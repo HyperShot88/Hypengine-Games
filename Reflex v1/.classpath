@@ -2,13 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Shane/git/Hypengine-Games/Reflex v1/jar/lwjgl.jar">
+	<classpathentry kind="lib" path="C:/Users/stem/git/Hypengine-Games/Reflex v1/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Shane/git/Hypengine-Games/Reflex v1/native-win"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/stem/git/Hypengine-Games/Reflex v1/native-win"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Shane/git/Hypengine-Games/Reflex v1/jar/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Shane/git/Hypengine-Games/Reflex v1/jar/PNGDecoder.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Shane/git/Hypengine-Games/Reflex v1/jar/slick-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/stem/git/Hypengine-Games/Reflex v1/jar/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/stem/git/Hypengine-Games/Reflex v1/jar/PNGDecoder.jar"/>
+	<classpathentry kind="lib" path="C:/Users/stem/git/Hypengine-Games/Reflex v1/jar/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
