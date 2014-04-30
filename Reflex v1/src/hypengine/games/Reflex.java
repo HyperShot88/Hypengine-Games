@@ -9,23 +9,63 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL11.*;
+import org.lwjgl.util.glu.GLU;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
 import de.matthiasmann.twl.utils.PNGDecoder;
 
-public class Reflex {
+public class Reflex implements Runnable {
+	
+	public int Width = 800;
+	public int Height  = 600;
+	
+	private boolean running;
 	
 	public static void main(String args[]) {
 		Reflex reflex = new Reflex();
+		reflex.start();
 	}
 	
-	public Reflex() {
-		create();
-		update();
-		destroy();
+	public void start() {
+		
+		this.running = true;
+		new Thread(this).start();
+		
 	}
 	
+	public void stop() {
+		
+		Display.destroy();
+		System.exit(0);
+		this.running = false;
+		
+	}
+	
+	public void initProg() {
+		
+		
+		
+	}
+	
+	public void run() {
+		this.create();
+		this.initOpenGL();
+		
+		while (running) {
+			this.tick();
+			this.render();
+			
+			if (Display.isCloseRequested()) stop();
+				Display.update();
+				Display.sync(60);
+			
+		}
+		
+	}
+			
 	private void create() {
 		try {
 			ByteBuffer[] icon = new ByteBuffer[2];
@@ -33,7 +73,8 @@ public class Reflex {
 			icon[1] = imgBuffer("res/reflex_icon32.png");
 			
 			
-			Display.setDisplayMode(new DisplayMode(800, 600));
+			Display.setDisplayMode(new DisplayMode (800,600));
+			Display.setResizable(true);
 			Display.setVSyncEnabled(true);
 			Display.setTitle("Reflex v1");
 			Display.setIcon(icon);
@@ -44,30 +85,24 @@ public class Reflex {
 			e.printStackTrace();
 		}
 	}
+				
+		
+	public void initOpenGL() {
+		
 	
-	private void pollInput() {
-		while (Keyboard.next()) {
-			try {
-				if (Keyboard.isKeyDown(Keyboard.KEY_F11)) {
-					Display.setFullscreen(true);
-				}
-			} catch (LWJGLException e) {
-				e.printStackTrace();
-			}
-		}
 		
 	}
 	
-	private void update() {
-		while (!Display.isCloseRequested()) {
-			Display.update();
-			Display.sync(60);
-		}
+	public void render() {
+		
+		
+		
 	}
 	
-	private void destroy() {
-		Display.destroy();
-		System.exit(0);
+	public void tick() {
+		
+		
+				
 	}
 	
 	public Texture imgTexture(String filename, String format)
