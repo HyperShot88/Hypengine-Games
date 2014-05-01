@@ -20,8 +20,9 @@ public class Menu extends BasicGameState{
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		
-		
-		
+		Image logo = new Image("res/Full.png");
+		g.drawImage(logo, 200, 200);
+				
 	}
 
 	
