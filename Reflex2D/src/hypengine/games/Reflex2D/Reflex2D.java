@@ -1,47 +1,57 @@
 package hypengine.games.Reflex2D;
 
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.Game;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.*;
 
-public class Reflex2D extends BasicGame{
+public class Reflex2D extends StateBasedGame{
 
-		public Reflex2D(String title) {
-		super(title);
+	public Reflex2D(String gamename) {
+		super(gamename);
+		this.addState(new Menu(menu));
+		this.addState(new Play(play));
+		this.addState(new Pause(pause));
+		this.addState(new Inventory(inventory));
 	}
+
+	public static final String gamename = "Reflex 2D";
+	public static final int menu = 0;
+	public static final int play = 1;
+	public static final int pause = 2;
+	public static final int inventory = 3;
 	
-	
-	public void init(GameContainer container) throws SlickException {
+			
+	public static void main(String[] args) {
 		
+		AppGameContainer app;
 		
-		
-	}
-	
-	public void update(GameContainer container, int delta) throws SlickException {
-		
-		
-		
-	}
-	
-	public void render(GameContainer container, Graphics r) throws SlickException {
-		
-		
+		try {
+			
+			app = new AppGameContainer(new Reflex2D(gamename + " | " + "FPS:"));
+			
+			app.setIcons(new String[] { "res/reflex_icon16.png", "res/reflex_icon32.png"} );
+			
+			app.setDisplayMode(800, 600, false);
+			
+			app.setShowFPS(false);
+			
+			app.start();
+			
+		}catch(SlickException e) {
+			e.printStackTrace();			
+		}
 					
 	}
-
-	public static void main(String[] args) throws SlickException {
+	
+	public void initStatesList(GameContainer gc) throws SlickException {
 		
-		AppGameContainer app =  new AppGameContainer(new Reflex2D("Reflex 2D" + " | "));
+		this.getState(menu).init(gc, this);
+		this.getState(play).init(gc, this); 
+		this.getState(pause).init(gc, this); 
+		this.getState(inventory).init(gc, this); 
 		
-		app.setDisplayMode(800, 600, false);
-		
-		app.setShowFPS(false);
-					
-		app.start();
+		this.enterState(menu);
 		
 	}
 }

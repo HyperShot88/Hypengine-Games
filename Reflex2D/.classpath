@@ -5,7 +5,7 @@
 	<classpathentry kind="lib" path="jar/slick.jar"/>
 	<classpathentry kind="lib" path="jar/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/stem/workspace/Reflex2D/native-win"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Shane/git/Hypengine-Games/Reflex2D/native-win"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
