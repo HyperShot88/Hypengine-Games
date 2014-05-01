@@ -1,8 +1,5 @@
 package hypengine.games.Reflex2D;
 
-import java.util.Properties;
-
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
@@ -21,26 +18,26 @@ public class Reflex2D extends StateBasedGame{
 	public static final int play = 1;
 	public static final int pause = 2;
 	public static final int inventory = 3;
-	public static int height = 800, width = 1000;
+	public static int height = 800, width = 1200;
 	
 			
 	public static void main(String[] args) {
 		
-		AppGameContainer app;
+		AppGameContainer appgc;
 		
 		try {
 			
-			app = new AppGameContainer(new Reflex2D(gamename + " | " + "FPS:"));
+			appgc = new AppGameContainer(new Reflex2D(gamename + " | " + "FPS:"));
 			
-			app.setIcons(new String[] { "res/reflex_icon16.png", "res/reflex_icon32.png"} );
+			appgc.setIcons(new String[] { "res/reflex_icon16.png", "res/reflex_icon32.png"} );
 			
-			app.setDisplayMode(width, height, false);
-			
-			app.setVSync(true);
+			appgc.setDisplayMode(width, height, false);
+								
+			appgc.setVSync(true);
 						
-			app.setShowFPS(false);
+			appgc.setShowFPS(false);
 									
-			app.start();
+			appgc.start();
 			
 		}catch(SlickException e) {
 			e.printStackTrace();			
