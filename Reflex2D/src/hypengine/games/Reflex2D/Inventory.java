@@ -35,7 +35,7 @@ public class Inventory extends BasicGameState{
 	
 	public int getID() {
 		
-		return 3;
+		return 2;
 	}
 
 }

@@ -9,15 +9,13 @@ public class Reflex2D extends StateBasedGame{
 		super(gamename);
 		this.addState(new Menu(menu));
 		this.addState(new Play(play));
-		this.addState(new Pause(pause));
 		this.addState(new Inventory(inventory));
 	}
 
 	public static final String gamename = "Reflex 2D";
 	public static final int menu = 0;
 	public static final int play = 1;
-	public static final int pause = 2;
-	public static final int inventory = 3;
+	public static final int inventory = 2;
 	public static int height = 800, width = 1200;
 	
 			
@@ -49,7 +47,6 @@ public class Reflex2D extends StateBasedGame{
 		
 		this.getState(menu).init(gc, this);
 		this.getState(play).init(gc, this); 
-		this.getState(pause).init(gc, this); 
 		this.getState(inventory).init(gc, this); 
 		
 		this.enterState(menu);

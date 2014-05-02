@@ -6,63 +6,63 @@ import org.lwjgl.input.*;
 
 public class Menu extends BasicGameState{
 
+	Image Logo;
+	Image Play;
+	Image Exit;
+	
+	
 	public Menu(int state) {
 			
-			
+		
 			
 		}
 	
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		
-		
+		Logo = new Image("res/Full.png");
+		Play = new Image("res/Play2.png");
+		Exit = new Image("res/Exit2.png");
 		
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		
-		Image logo = new Image("res/Full.png");
-		Image Play = new Image("res/Play.png");
-		Image Exit = new Image("res/Exit.png");
-		
-		g.drawImage(logo, 200, 50);
-		g.drawImage(Play, 400, 350);
-		g.drawImage(Exit, 390, 475);
-		
-				
+						
+		g.drawImage(Logo, 200, 50);
+		g.drawImage(Play, 470, 375);
+		g.drawImage(Exit, 470, 575);
+						
 	}
 
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		
-	Input input = gc.getInput();
-	int Xpos = Mouse.getX();
-	int Ypos = 800 - Mouse.getY();	
-	
-	if((Xpos>400 && Xpos<800) && (Ypos>450 && Ypos<350)) {
+		int Xpos = Mouse.getX();
+		int Ypos = Mouse.getY();	
 		
-		if(input.isMouseButtonDown(0)) {
+	if((Xpos>470 && Xpos<725) && (Ypos>275 && Ypos<425)) { //Play button
+		
+		if(Mouse.isButtonDown(0)) {
 			
 			sbg.enterState(1);
 			
 		}
 		
-		if((Xpos>400 && Xpos<800) && (Ypos>475 && Ypos<675)) {
+	}
+		
+		if((Xpos>470 && Xpos<730) && (Ypos>75 && Ypos<225)) { //Exit Button
 			
-			if(input.isMouseButtonDown(0)) {
+			if(Mouse.isButtonDown(0)) {
 				
-				System.exit(0);
+			System.exit(0);
 				
 				}
 			}
 		
 		}
-	
-	}
-
-	
+			
 	public int getID() {
 		
 		return 0;
