@@ -9,7 +9,9 @@ public class Menu extends BasicGameState{
 	Image Logo;
 	Image Play;
 	Image Exit;
-	
+	Image Graphic;
+	boolean Graphic1 = false;
+	boolean Graphic2 = false;
 	
 	public Menu(int state) {
 			
@@ -23,6 +25,7 @@ public class Menu extends BasicGameState{
 		Logo = new Image("res/Full.png");
 		Play = new Image("res/Play2.png");
 		Exit = new Image("res/Exit2.png");
+		Graphic = new Image("res/diamond.png");
 		
 	}
 	
@@ -32,7 +35,28 @@ public class Menu extends BasicGameState{
 		g.drawImage(Logo, 200, 50);
 		g.drawImage(Play, 470, 375);
 		g.drawImage(Exit, 470, 575);
-						
+			
+		 if(Graphic1==true){
+	         
+			 g.drawImage(Graphic, 290, 375);
+			 g.drawImage(Graphic, 760, 375);
+			 
+	         if(Graphic1==false){
+	            g.clear();
+	         }
+	    }
+		 
+		 if(Graphic2==true){
+	         
+			 g.drawImage(Graphic, 290, 375);
+			 g.drawImage(Graphic, 760, 375);
+			 
+	         if(Graphic2==false){
+	            g.clear();
+	        }
+	         
+	    }
+				
 	}
 
 	
@@ -44,6 +68,8 @@ public class Menu extends BasicGameState{
 		
 	if((Xpos>470 && Xpos<725) && (Ypos>275 && Ypos<425)) { //Play button
 		
+		Graphic1 = true;
+				
 		if(Mouse.isButtonDown(0)) {
 			
 			sbg.enterState(1);
@@ -51,8 +77,17 @@ public class Menu extends BasicGameState{
 		}
 		
 	}
+	
+	if(!(Xpos>470 && Xpos<725) && !(Ypos>275 && Ypos<425)) { //Play button
 		
+		Graphic1 = false;
+				
+		}
+	
+			
 		if((Xpos>470 && Xpos<730) && (Ypos>75 && Ypos<225)) { //Exit Button
+			
+			Graphic2 = true;
 			
 			if(Mouse.isButtonDown(0)) {
 				
