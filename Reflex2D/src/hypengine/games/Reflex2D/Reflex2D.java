@@ -3,6 +3,7 @@ package hypengine.games.Reflex2D;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+
 public class Reflex2D extends StateBasedGame{
 
 	public Reflex2D(String gamename) {
@@ -25,7 +26,7 @@ public class Reflex2D extends StateBasedGame{
 		
 		try {
 			
-			appgc = new AppGameContainer(new Reflex2D(gamename + " | " + "FPS:"));
+			appgc = new AppGameContainer(new Reflex2D(gamename));
 			
 			appgc.setIcons(new String[] { "res/reflex_icon16.png", "res/reflex_icon32.png"} );
 			
@@ -33,7 +34,7 @@ public class Reflex2D extends StateBasedGame{
 								
 			appgc.setVSync(true);
 						
-			appgc.setShowFPS(false);
+			appgc.setShowFPS(true);
 									
 			appgc.start();
 			
