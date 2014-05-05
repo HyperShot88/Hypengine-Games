@@ -21,7 +21,10 @@ public class Play extends BasicGameState{
 	int maxHealth = 100;
 	double Health = 100;
 	int currentHealth;
-	
+	Image CharacterRight;
+	Image CurrentCharacter;
+	int CharacterX = 502;
+	int CharacterY = 495;
 
 	
 	public Play(int state) {
@@ -38,7 +41,9 @@ public class Play extends BasicGameState{
 		GrasslandsThumb = new Image("res/grass map tumbnail.png");
 		Grass = new Image("res/Grasslands.png");
 		Prompt = new Image("res/Map.png");
-					
+		CharacterRight = new Image("res/Character Right.png");
+		CurrentCharacter= new Image("res/Character Right.png");
+		
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -56,6 +61,8 @@ public class Play extends BasicGameState{
 				
 				g.drawImage(Map, -600, -800);
 					
+				g.drawImage(CurrentCharacter, CharacterX, CharacterY);
+				
 				g.setColor(Color.black);
 				g.drawRect(10, 725, maxHealth,30);
 				g.setColor(Color.black);
@@ -84,8 +91,17 @@ public class Play extends BasicGameState{
 		Input input = gc.getInput();
 		int Xpos = Mouse.getX();
 		int Ypos = Mouse.getY();	
-
+				
 		if(quit==false){
+			
+			
+			if(input.isKeyDown(Input.KEY_D)) {
+				
+				CurrentCharacter = CharacterRight;
+				CharacterX += 5;
+				
+			}
+			
 			
 			if(currentHealth==100) {
 				
