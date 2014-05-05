@@ -19,7 +19,7 @@ public class Play extends BasicGameState{
 	Image City;
 	Image Prompt;
 	int maxHealth = 100;
-	double Health = 100;
+	double Health = 23;
 	int currentHealth;
 	Image CharacterRight;
 	Image CurrentCharacter;
@@ -38,7 +38,7 @@ public class Play extends BasicGameState{
 		
 		Resume = new Image("res/Resume.png");
 		Quit = new Image("res/ExitToMenu.png");
-		GrasslandsThumb = new Image("res/grass map tumbnail.png");
+		GrasslandsThumb = new Image("res/Grassland Map Thumbnail.png");
 		Grass = new Image("res/Grasslands.png");
 		Prompt = new Image("res/Map.png");
 		CharacterRight = new Image("res/Character Right.png");
