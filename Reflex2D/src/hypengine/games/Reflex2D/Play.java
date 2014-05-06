@@ -1,13 +1,18 @@
 package hypengine.games.Reflex2D;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Play extends BasicGameState{
 	
+	private LinkedList<Bullet> bullets;
 	private SpriteSheet movingRightSheet;
 	private SpriteSheet movingLeftSheet;
 	private Animation movingRight;
@@ -25,13 +30,14 @@ public class Play extends BasicGameState{
 	Image City;
 	Image Prompt;
 	int maxHealth = 100;
-	double Health = 23;
+	double Health = 100;
 	int currentHealth;
 	float CharacterX = -1000;
 	float CharacterY = -1334;
 	float shiftX = CharacterX + 1502;
 	float shiftY = CharacterY + 1754;
 	int[] durationIdle = {200, 200};
+	
 	
 	
 	public Play(int state) {
@@ -50,6 +56,8 @@ public class Play extends BasicGameState{
 		Prompt = new Image("res/Map.png");
 		Image[] IdleRightPics = {new Image("res/Idle Right.png"), new Image("res/Idle Right.png")};
 		Image[] IdleLeftPics = {new Image("res/Idle Left.png"), new Image("res/Idle Left.png")};		
+			
+		bullets = new LinkedList<Bullet>();
 		
 		movingRightSheet = new SpriteSheet("res/Moving Right SpriteSheet.png", 256, 256);
 		movingRight = new Animation(movingRightSheet, 300);
@@ -59,8 +67,7 @@ public class Play extends BasicGameState{
 		
 		IdleRight = new Animation(IdleRightPics, durationIdle, false);
 		IdleLeft = new Animation(IdleLeftPics, durationIdle, false);
-				
-		
+							
 		Character = IdleRight;
 		
 	}
@@ -81,7 +88,13 @@ public class Play extends BasicGameState{
 				g.drawImage(Map, CharacterX, CharacterY);
 				g.drawString("X: " + CharacterX + "   Y: " + CharacterY, 200, 700);
 				Character.draw(shiftX, shiftY);
-				
+							
+				for( Bullet b : bullets ) {
+					
+					b.render(gc, g);
+					
+				}
+									
 				g.setColor(Color.black);
 				g.drawRect(10, 725, maxHealth,30);
 				g.setColor(Color.black);
@@ -110,10 +123,33 @@ public class Play extends BasicGameState{
 		Input input = gc.getInput();
 		int Xpos = Mouse.getX();
 		int Ypos = Mouse.getY();	
+		
 				
 		if(quit==false){
 									
 			movingRight.update(delta);
+			movingLeft.update(delta);
+							
+			Iterator<Bullet> i = bullets.iterator();
+			
+			while( i.hasNext() ) {
+				
+				Bullet b = i.next();
+				b.update(delta);
+				
+			}
+			
+			if(input.isKeyPressed(Input.KEY_SPACE)) {
+				
+				bullets.add( new Bullet( new Vector2f(770, 580) , new Vector2f(500, 0) ) );
+				
+			}
+									
+			if(input.isKeyPressed(Input.KEY_W)) {
+				
+				bullets.add( new Bullet( new Vector2f(514, 580) , new Vector2f(-500, 0) ) );
+				
+			}
 			
 			if((!input.isKeyDown(Input.KEY_D)) && ((!input.isKeyDown(Input.KEY_A)))) {
 				
@@ -121,6 +157,11 @@ public class Play extends BasicGameState{
 				
 			}
 			
+			if(input.isKeyDown(Input.KEY_LSHIFT)) {
+				
+				Character = IdleLeft;
+				
+			}
 								
 			if(input.isKeyDown(Input.KEY_D)) {
 				
