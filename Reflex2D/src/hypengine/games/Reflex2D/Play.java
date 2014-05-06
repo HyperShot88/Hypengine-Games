@@ -8,6 +8,12 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Play extends BasicGameState{
 	
+	private SpriteSheet movingRightSheet;
+	private SpriteSheet movingLeftSheet;
+	private Animation movingRight;
+	private Animation Character;
+	private Animation movingLeft;
+	Animation IdleLeft, IdleRight;
 	boolean quit = false;
 	Image Resume;
 	Image Quit;
@@ -25,8 +31,7 @@ public class Play extends BasicGameState{
 	float CharacterY = -1334;
 	float shiftX = CharacterX + 1502;
 	float shiftY = CharacterY + 1754;
-	Animation Character, CharacterWalkingLeft, CharacterWalkingRight, BulletRight, BulletLeft;
-	int[] duration = {200, 200};
+	int[] durationIdle = {200, 200};
 	
 	
 	public Play(int state) {
@@ -43,13 +48,21 @@ public class Play extends BasicGameState{
 		GrasslandsThumb = new Image("res/Grassland Map Thumbnail.png");
 		Grass = new Image("res/Grasslands.png");
 		Prompt = new Image("res/Map.png");
-		Image[] walkingLeft = {};
-		Image[] walkingRight = {new Image("res/Character Right/Start Right.png"), new Image("res/Character Right/Right 1.png"), new Image("res/Character Right/End Right.png")};
+		Image[] IdleRightPics = {new Image("res/Idle Right.png"), new Image("res/Idle Right.png")};
+		Image[] IdleLeftPics = {new Image("res/Idle Left.png"), new Image("res/Idle Left.png")};		
 		
-		CharacterWalkingLeft = new Animation(walkingLeft, duration, false);
-		CharacterWalkingRight = new Animation(walkingRight, duration, false);
-		Character = CharacterWalkingRight;
+		movingRightSheet = new SpriteSheet("res/Moving Right SpriteSheet.png", 256, 256);
+		movingRight = new Animation(movingRightSheet, 300);
+		
+		movingLeftSheet = new SpriteSheet("res/Moving Left SpriteSheet.png", 256, 256);
+		movingLeft = new Animation(movingLeftSheet, 300);
+		
+		IdleRight = new Animation(IdleRightPics, durationIdle, false);
+		IdleLeft = new Animation(IdleLeftPics, durationIdle, false);
 				
+		
+		Character = IdleRight;
+		
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -66,8 +79,8 @@ public class Play extends BasicGameState{
 			if(MapInt==true) {
 				
 				g.drawImage(Map, CharacterX, CharacterY);
-					
-				g.drawAnimation(Character, shiftX, shiftY);
+				g.drawString("X: " + CharacterX + "   Y: " + CharacterY, 200, 700);
+				Character.draw(shiftX, shiftY);
 				
 				g.setColor(Color.black);
 				g.drawRect(10, 725, maxHealth,30);
@@ -99,17 +112,44 @@ public class Play extends BasicGameState{
 		int Ypos = Mouse.getY();	
 				
 		if(quit==false){
+									
+			movingRight.update(delta);
 			
-			
-			if(input.isKeyDown(Input.KEY_D)) {
+			if((!input.isKeyDown(Input.KEY_D)) && ((!input.isKeyDown(Input.KEY_A)))) {
 				
-				Character = CharacterWalkingRight;
-				
-				CharacterX -= delta * .1f;
+				Character = IdleRight;
 				
 			}
 			
+								
+			if(input.isKeyDown(Input.KEY_D)) {
+				
+				Character = movingRight;
+				
+				CharacterX -= delta * .2f;
+				
+				if(CharacterX<-1995) {
+					
+					CharacterX += delta * .2f;
+					
+				}
+				
+			}
 			
+			if(input.isKeyDown(Input.KEY_A)) {
+				
+				Character = movingLeft;
+				
+				CharacterX += delta * .2f;
+				
+				if(CharacterX>-7) {
+					
+					CharacterX -= delta * .2f;
+					
+				}
+				
+			}
+								
 			if(currentHealth==100) {
 				
 				Health += 0;
