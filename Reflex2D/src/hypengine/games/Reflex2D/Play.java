@@ -228,6 +228,7 @@ public class Play extends BasicGameState{
 						
 			Timer += .01;
 			Clock = (int)(Timer);
+			currentHealth = (int)(Health);
 			movingRight.update(delta);
 			movingLeft.update(delta);
 							
@@ -352,16 +353,16 @@ public class Play extends BasicGameState{
 				
 			}
 								
-			if(currentHealth==100) {
+			if(currentHealth==0) {
 				
-				Health += 0;
+				sbg.enterState(2);
 				
 				}
 				
-				if(currentHealth<100) {
+				if(currentHealth>0) {
 					
-					Health += .008;
-					currentHealth = (int)(Health);
+					Health -= .01;
+					
 					
 				}
 			
