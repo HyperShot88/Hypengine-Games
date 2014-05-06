@@ -29,6 +29,29 @@ public class Play extends BasicGameState{
 	Image Grass;
 	Image City;
 	Image Prompt;
+	Image Zombie;
+	Image Zombie1;
+	Image Zombie2;
+	Image Zombie3;
+	Image Zombie4;
+	Image Zombie5;
+	Image Zombie6;
+	Image Zombie7;
+	Image Zombie8;
+	Image Zombie9;
+	Image Zombie10;
+	boolean Spawn1 = false;
+	boolean Spawn2 = false;
+	boolean Spawn3 = false;
+	boolean Spawn4 = false;
+	boolean Spawn5 = false;
+	boolean Spawn6 = false;
+	boolean Spawn7 = false;
+	boolean Spawn8 = false;
+	boolean Spawn9 = false;
+	boolean Spawn10 = false;
+	double Timer = 0;
+	int Clock;
 	int maxHealth = 100;
 	double Health = 100;
 	int currentHealth;
@@ -59,6 +82,8 @@ public class Play extends BasicGameState{
 			
 		bullets = new LinkedList<Bullet>();
 		
+		Zombie = new Image("res/zombie.png");
+		
 		movingRightSheet = new SpriteSheet("res/Moving Right SpriteSheet.png", 256, 256);
 		movingRight = new Animation(movingRightSheet, 300);
 		
@@ -69,6 +94,18 @@ public class Play extends BasicGameState{
 		IdleLeft = new Animation(IdleLeftPics, durationIdle, false);
 							
 		Character = IdleRight;
+		
+		Zombie1 = Zombie;
+		Zombie2 = Zombie;
+		Zombie3 = Zombie;
+		Zombie4 = Zombie;
+		Zombie5 = Zombie;
+		Zombie6 = Zombie;
+		Zombie7 = Zombie;
+		Zombie8 = Zombie;
+		Zombie9 = Zombie;
+		Zombie10 = Zombie;
+		
 		
 	}
 	
@@ -88,7 +125,69 @@ public class Play extends BasicGameState{
 				g.drawImage(Map, CharacterX, CharacterY);
 				g.drawString("X: " + CharacterX + "   Y: " + CharacterY, 200, 700);
 				Character.draw(shiftX, shiftY);
-							
+						
+			
+				
+	if(Spawn1==true){
+					
+		Zombie1.draw(CharacterX + 1608, shiftY);	
+					
+				}
+	
+	if(Spawn2==true){
+		
+		Zombie2.draw(CharacterX + 2004, shiftY);
+		
+	}
+	
+	if(Spawn3==true){
+		
+		Zombie3.draw(CharacterX + 1967, shiftY);
+		
+	}
+	
+	if(Spawn4==true){
+		
+		Zombie4.draw(CharacterX + 1845, shiftY);
+		
+	}
+	
+	if(Spawn5==true){
+		
+		Zombie5.draw(CharacterX + 1370, shiftY);
+		
+	}
+	
+	if(Spawn6==true){
+		
+		Zombie6.draw(CharacterX + 1023, shiftY);
+		
+	}
+	
+	if(Spawn7==true){
+		
+		Zombie7.draw(CharacterX + 1468, shiftY);
+		
+	}
+	
+	if(Spawn8==true){
+		
+		Zombie8.draw(CharacterX + 1716, shiftY);
+		
+	}
+	
+	if(Spawn9==true){
+		
+		Zombie9.draw(CharacterX + 2156, shiftY);
+		
+	}
+	
+	if(Spawn10==true){
+		
+		Zombie10.draw(CharacterX + 1800, shiftY);
+		
+	}
+				
 				for( Bullet b : bullets ) {
 					
 					b.render(gc, g);
@@ -126,10 +225,72 @@ public class Play extends BasicGameState{
 		
 				
 		if(quit==false){
-									
+						
+			Timer += .01;
+			Clock = (int)(Timer);
 			movingRight.update(delta);
 			movingLeft.update(delta);
 							
+			if(Clock==3){
+				
+				Spawn1 = true;
+				
+			}
+			
+			if(Clock==3){
+				
+				Spawn2 = true;
+				
+			}
+
+			if(Clock==3){
+	
+				Spawn3 = true;
+	
+}
+
+			if(Clock==6){
+	
+				Spawn4 = true;
+	
+}
+			
+			if(Clock==6){
+				
+				Spawn5 = true;
+				
+			}
+
+			if(Clock==6){
+	
+				Spawn6 = true;
+	
+}
+
+			if(Clock==9){
+	
+				Spawn7 = true;
+	
+}
+
+			if(Clock==9){
+	
+				Spawn8 = true;
+	
+}
+
+			if(Clock==9){
+	
+				Spawn9 = true;
+	
+}
+
+			if(Clock==10){
+	
+				Spawn10 = true;
+	
+}
+			
 			Iterator<Bullet> i = bullets.iterator();
 			
 			while( i.hasNext() ) {
