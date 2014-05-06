@@ -21,8 +21,6 @@ public class Play extends BasicGameState{
 	int maxHealth = 100;
 	double Health = 23;
 	int currentHealth;
-	Image CharacterRight;
-	Image CurrentCharacter;
 	float CharacterX = -1000;
 	float CharacterY = -1334;
 	float shiftX = CharacterX + 1502;
