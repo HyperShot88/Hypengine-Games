@@ -21,10 +21,13 @@ import javax.swing.JTextField;
 import hypengine.games.Reflex2D.*;
 
 public class launcher {
+	
+	private static int width = 1200;
+	private static int height = 800;
 
 	public static void main(String args[]) {
 		JFrame frame = new JFrame("Reflex2D Login");
-		frame.setSize(300, 175);
+		frame.setSize(300, 245);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -48,9 +51,19 @@ public class launcher {
 		pwdField.setBounds(60, 40, 170, 25);
 		pwdField.setText("Password");
 		panel.add(pwdField);
+		
+		final JTextField widthField = new JTextField(5);
+		widthField.setBounds(60, 70, 170, 25);
+		widthField.setText("Width");
+		panel.add(widthField);
+		
+		final JTextField heightField = new JTextField(5);
+		heightField.setBounds(60, 100, 170, 25);
+		heightField.setText("Height");
+		panel.add(heightField);
 
 		JButton btnSubmit = new JButton();
-		btnSubmit.setBounds(105, 80, 80, 25);
+		btnSubmit.setBounds(105, 140, 80, 25);
 		btnSubmit.setText("Login");
 		btnSubmit.addActionListener(new ActionListener() {
 
@@ -71,6 +84,8 @@ public class launcher {
 				String dbPass = "8Pg4VFBsODIi";
 
 				try {
+					width = Integer.parseInt(widthField.getText());
+					height = Integer.parseInt(heightField.getText());
 					playerPwd = pwdField.getText();
 					Class.forName(driver).newInstance();
 					Connection con = DriverManager.getConnection(url + dbName,
@@ -89,8 +104,10 @@ public class launcher {
 					}
 
 					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				} catch (NumberFormatException n) {
+					jlbl.setText("Incorrect width/height!");
+				} catch (SQLException s) {
+					s.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -128,7 +145,7 @@ public class launcher {
 							return;
 						} else {
 							// open game & exit
-							Reflex2D reflex = new Reflex2D("Reflex 2D");
+							Reflex2D reflex = new Reflex2D("Reflex 2D", height, width);
 							reflex.main(null);
 							//System.exit(0);
 						}
@@ -145,9 +162,9 @@ public class launcher {
 			}
 		});
 		panel.add(btnSubmit);
-
+		
 		jlbl.setHorizontalTextPosition(JLabel.CENTER);
-		jlbl.setBounds(90, 110, 100, 25);
+		jlbl.setBounds(90, 170, 100, 25);
 		panel.add(jlbl);
 	}
 
